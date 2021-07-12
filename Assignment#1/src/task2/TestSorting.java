@@ -1,5 +1,9 @@
 package task2;
 
+/*
+ * @author : SAAD AHMED
+ * Description: Work on Resizable arrays and sorting algorithm
+ */
 public class TestSorting {
 
 	public static void main(String[] args) {
