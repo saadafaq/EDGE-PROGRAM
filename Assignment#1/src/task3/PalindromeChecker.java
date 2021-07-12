@@ -1,4 +1,8 @@
 package task3;
+/*
+ * @author : SAAD AHMED
+ * Description: Work on StringBuffer & solve Palindrome
+ */
 
 public class PalindromeChecker {
 	public static boolean isPalindrome(StringBuilder sb){  
