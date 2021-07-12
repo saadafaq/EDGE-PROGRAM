@@ -5,11 +5,11 @@ package task3;
  */
 
 public class PalindromeChecker {
-	public static boolean isPalindrome(StringBuilder sb){  
-	    StringBuilder sb2 = new StringBuilder(sb);  
+	public static boolean isPalindrome(StringBuffer stringBuffer){  
+	    StringBuilder sb2 = new StringBuilder(stringBuffer);  
 	    sb2.reverse();
 	    
-	    String original = sb.toString();
+	    String original = stringBuffer.toString();
 	    String rev=sb2.toString();  
 	    
 	    if(original.equals(rev))
