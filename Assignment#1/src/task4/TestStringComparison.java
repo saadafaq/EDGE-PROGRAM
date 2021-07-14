@@ -10,11 +10,18 @@ package task4;
  * No existing comparison functions are allowed.
  * 
  *  HINT: use bit vector (int for this task)
- */
+*/
+
 public class TestStringComparison {
 	public static void main(String[] args) {
-		StringComparison.printFirstCommonCharacter("bca", "aef");
-		StringComparison.printFirstCommonCharacter("ab", "bc");
+		
+		Character[] charArray = {'a','b','c'};
+		Character[] charArray2 = {'a','d','e'};
+		
+		Character[] charArray3 = {'a','d','f'};
+		Character[] charArray4 = {'e','e','g'};
 
+		StringComparison.printFirstCommonCharacter( charArray , charArray2 );
+		StringComparison.printFirstCommonCharacter(charArray3, charArray4);
 	}
 }

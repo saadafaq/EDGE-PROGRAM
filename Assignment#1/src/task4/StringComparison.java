@@ -10,28 +10,21 @@ package task4;
  * No existing comparison functions are allowed.
  * 
  *  HINT: use bit vector (int for this task)
-
  */
 public class StringComparison {
-	public static void printFirstCommonCharacter(String str, String str2) {
+	public static void printFirstCommonCharacter(Character[] charArray, Character[] chrArray2) {
 		 int checker = 0;
-		 
-		 for (int i = 0; i < str.length(); i++) {
-			 int bitShifting = 1 << (str.charAt(i) - 'a');
-			 if ((checker & bitShifting) > 0) {
-				 continue;
-			 }
-			 checker |= bitShifting;
+		 		 
+		 for(char ch : charArray) {
+			 checker |= (1 << (ch - 'a'));
 		 }
 		 
-		 for (int i = 0; i < str2.length(); i++) {
-			 int bitShifting = 1 << (str2.charAt(i) - 'a');
-			 if ((checker & bitShifting ) > 0) {
-				 System.out.println( str2.charAt(i) + " is first common character.");
+		 for(char ch : chrArray2) {
+			 if ((checker & (1 << (ch - 'a')) ) > 0) {
+				 System.out.println(ch + " is first common character.");
 				 break;
 			 }
-			 checker |= bitShifting;
-		}
-		
+		 }
+		 
 	}
 }
