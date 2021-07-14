@@ -22,9 +22,10 @@ public class StringComparison {
 		 for(char ch : chrArray2) {
 			 if ((checker & (1 << (ch - 'a')) ) > 0) {
 				 System.out.println(ch + " is first common character.");
-				 break;
+				 return;
 			 }
 		 }
 		 
+		 System.out.println("No character is common."); 
 	}
 }
