@@ -16,7 +16,7 @@ public class DemoController extends Properties {
     ValueRefreshConfigBean valueRefreshConfigBean;
 
     @Autowired
-    EmailServiceImpl emailService;
+    EmailService emailService;
 
    @GetMapping
     public String getColor(){
