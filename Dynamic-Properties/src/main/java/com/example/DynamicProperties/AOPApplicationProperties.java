@@ -7,10 +7,12 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 @Component
 public class AOPApplicationProperties {
 
+    private Properties properties = new Properties();
     private static final String propertyFileName;
 
     private static Map<String,String> methodToEmailMap;
@@ -38,7 +41,7 @@ public class AOPApplicationProperties {
     private void selectFromProperty(){}
 
     @Around("selectFromProperty()")
-    private String getPropertyFromApplicationProperties(JoinPoint joinPoint){
+    private String getPropertyFromApplicationProperties(JoinPoint joinPoint) throws IOException {
         String propertyNameFromMethod = methodToEmailMap.get(joinPoint.getSignature().getName());
         if(joinPoint.getArgs().length == 1)
             return getProperty(joinPoint.getArgs()[0].toString());
@@ -49,27 +52,13 @@ public class AOPApplicationProperties {
     }
 
 
-    public String getProperty(String key){
+    public String getProperty(String key) throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(propertyFileName);
 
-        String result = new BufferedReader(new InputStreamReader(inputStream))
-                .lines().parallel().collect(Collectors.joining("\n"));
+        properties.load(inputStream);
 
-        Map<String, String> myMap = new HashMap<String, String>();
-        String[] pairs = result.split("\n");
-
-        for (int i=0;i<pairs.length;i++) {
-
-            String pair = pairs[i];
-            String[] keyValue = pair.split("=");
-
-            if(keyValue.length == 2) {
-                myMap.put(keyValue[0].strip(), keyValue[1].strip());
-            }
-        }
-
-        return myMap.get(key);
+        return properties.get(key).toString();
     }
 
 }

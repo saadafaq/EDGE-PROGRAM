@@ -1,6 +1,7 @@
 package com.example.DynamicProperties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ public class EmailService {
     @Autowired
     private EmailConfiguration emailConfiguration;
 
-    public String sendEmail() {
+    public int sendEmail() {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(emailConfiguration.getFromEmail());
         message.setTo(emailConfiguration.getToEmail());
@@ -22,8 +23,7 @@ public class EmailService {
         message.setText(emailConfiguration.getContent());
         emailSender.send(message);
 
-        return "[Fromemail : "+emailConfiguration.getFromEmail() +
-                " ,"+ "toEmail:"+emailConfiguration.getToEmail()+"]";
+        return HttpStatus.OK.value();
     }
 
     public String testEmail(){
